@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>通用基础 · GitBook</title>
+        <title>Crash 跟踪 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../iOSBase/c_memory_layout.md" />
+    <link rel="next" href="performance_monitor.html" />
     
     
-    <link rel="prev" href="../" />
+    <link rel="prev" href="launch_opt.html" />
     
 
     </head>
@@ -102,9 +102,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="base.html">
+        <li class="chapter " data-level="1.2" data-path="../Base/base.html">
             
-                <a href="base.html">
+                <a href="../Base/base.html">
             
                     
                     通用基础
@@ -192,9 +192,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="../Optimize/optmize.html">
+        <li class="chapter " data-level="1.4" data-path="optmize.html">
             
-                <a href="../Optimize/optmize.html">
+                <a href="optmize.html">
             
                     
                     性能优化
@@ -206,9 +206,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../Optimize/fps_opt.html">
+        <li class="chapter " data-level="1.4.1" data-path="fps_opt.html">
             
-                <a href="../Optimize/fps_opt.html">
+                <a href="fps_opt.html">
             
                     
                     卡顿优化
@@ -219,9 +219,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../Optimize/energy_opt.html">
+        <li class="chapter " data-level="1.4.2" data-path="energy_opt.html">
             
-                <a href="../Optimize/energy_opt.html">
+                <a href="energy_opt.html">
             
                     
                     耗电优化
@@ -232,9 +232,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../Optimize/compile_opt.html">
+        <li class="chapter " data-level="1.4.3" data-path="compile_opt.html">
             
-                <a href="../Optimize/compile_opt.html">
+                <a href="compile_opt.html">
             
                     
                     编译优化
@@ -245,9 +245,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="../Optimize/ipa_opt.html">
+        <li class="chapter " data-level="1.4.4" data-path="ipa_opt.html">
             
-                <a href="../Optimize/ipa_opt.html">
+                <a href="ipa_opt.html">
             
                     
                     ipa 优化
@@ -258,9 +258,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="../Optimize/launch_opt.html">
+        <li class="chapter " data-level="1.4.5" data-path="launch_opt.html">
             
-                <a href="../Optimize/launch_opt.html">
+                <a href="launch_opt.html">
             
                     
                     启动优化
@@ -271,9 +271,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.6" data-path="../Optimize/crash_trace.html">
+        <li class="chapter active" data-level="1.4.6" data-path="crash_trace.html">
             
-                <a href="../Optimize/crash_trace.html">
+                <a href="crash_trace.html">
             
                     
                     Crash 跟踪
@@ -284,9 +284,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7" data-path="../Optimize/performance_monitor.html">
+        <li class="chapter " data-level="1.4.7" data-path="performance_monitor.html">
             
-                <a href="../Optimize/performance_monitor.html">
+                <a href="performance_monitor.html">
             
                     
                     性能监控
@@ -428,7 +428,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >通用基础</a>
+        <a href=".." >Crash 跟踪</a>
     </h1>
 </div>
 
@@ -443,12 +443,65 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="ios-&#x57FA;&#x7840;&#x90E8;&#x5206;">iOS &#x57FA;&#x7840;&#x90E8;&#x5206;</h1>
+                                <h1 id="crash">Crash</h1>
+<h2 id="&#x5F02;&#x5E38;&#x79CD;&#x7C7B;">&#x5F02;&#x5E38;&#x79CD;&#x7C7B;</h2>
+<h3 id="mach-&#x5F02;&#x5E38;">Mach &#x5F02;&#x5E38;</h3>
+<p>Mach&#x5F02;&#x5E38;&#x662F;&#x6700;&#x5E95;&#x5C42;&#x7684;&#x5185;&#x6838;&#x7EA7;&#x5F02;&#x5E38;</p>
 <ul>
-<li>c &#x5185;&#x5B58;&#x7BA1;&#x7406;</li>
-<li>&#x7EBF;&#x7A0B;&#x5B89;&#x5168;</li>
-<li>HTTP</li>
-<li>Socket</li>
+<li>EXC_BAD_ACCESS &#xFF08;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#x5F02;&#x5E38;&#xFF09;</li>
+<li>EXC_BAD_INSTRUCTION &#xFF08;Illegal or undefined instruction or operand&#xFF09;</li>
+</ul>
+<p>&#x8BE6;&#x7EC6;&#x7C7B;&#x578B;&#x53EF;&#x67E5;&#x770B; CocoaSDK &#x4E2D; <code>mach/exception_types.h</code> &#x6587;&#x4EF6;</p>
+<h3 id="unix-singal">Unix Singal</h3>
+<p>Unix Signal&#x662F;Unix&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x4E00;&#x79CD;&#x5F02;&#x6B65;&#x901A;&#x77E5;&#x673A;&#x5236;&#xFF0C;Mach&#x5F02;&#x5E38;&#x5728;host&#x5C42;&#x88AB;ux_exception&#x8F6C;&#x6362;&#x4E3A;&#x76F8;&#x5E94;&#x7684;Unix Signal&#xFF0C;&#x5E76;&#x901A;&#x8FC7;threadsignal&#x5C06;&#x4FE1;&#x53F7;&#x6295;&#x9012;&#x5230;&#x51FA;&#x9519;&#x7684;&#x7EBF;&#x7A0B;&#x3002;</p>
+<ul>
+<li>SIGTRAP 5 (&#x7531;&#x65AD;&#x70B9;&#x6307;&#x4EE4;&#x6216;&#x5176;&#x5B83;trap&#x6307;&#x4EE4;&#x4EA7;&#x751F;. &#x7531;debugger&#x4F7F;&#x7528;)</li>
+<li>SIGABRT 6 (&#x8C03;&#x7528;abort&#x51FD;&#x6570;&#x751F;&#x6210;&#x7684;&#x4FE1;&#x53F7;)</li>
+<li>SIGBUS 7 (&#x975E;&#x6CD5;&#x5730;&#x5740;, &#x5305;&#x62EC;&#x5185;&#x5B58;&#x5730;&#x5740;&#x5BF9;&#x9F50;&#x51FA;&#x9519;)</li>
+<li>SIGSEGV 11 &#xFF08;&#x8BD5;&#x56FE;&#x8BBF;&#x95EE;&#x672A;&#x5206;&#x914D;&#x7ED9;&#x81EA;&#x5DF1;&#x7684;&#x5185;&#x5B58;, &#x6216;&#x8BD5;&#x56FE;&#x5F80;&#x6CA1;&#x6709;&#x5199;&#x6743;&#x9650;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#x5199;&#x6570;&#x636E;.&#xFF09;</li>
+<li>SIGALRM 14&#xFF08;&#x7A0B;&#x5E8F;&#x8D85;&#x65F6;&#x4FE1;&#x53F7;)</li>
+</ul>
+<p>&#x5229;&#x7528;Unix&#x6807;&#x51C6;&#x7684;signal&#x673A;&#x5236;&#x6765;&#x5904;&#x7406;&#x5F02;&#x5E38;&#x3002;&#x8BE6;&#x7EC6;&#x7C7B;&#x578B;&#x53EF;&#x67E5;&#x770B; <code>sys/signal.h</code></p>
+<h3 id="nsexception">NSException</h3>
+<p>NSException&#x662F;OC&#x5C42;&#xFF0C;&#x7531;iOS&#x5E93;&#x6216;&#x8005;&#x5404;&#x79CD;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x6216;Runtime&#x9A8C;&#x8BC1;&#x51FA;&#x9519;&#x8BEF;&#x800C;&#x629B;&#x51FA;&#x7684;&#x5F02;&#x5E38;&#x3002;</p>
+<ul>
+<li>NSRangeException &#xFF08;&#x6570;&#x7EC4;&#x8D8A;&#x754C;&#x5F02;&#x5E38;&#xFF09;</li>
+</ul>
+<p>&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x88AB;try catch&#x6355;&#x83B7;&#xFF08;&#x82F9;&#x679C;&#x4E0D;&#x5EFA;&#x8BAE;&#x7528;&#xFF09;&#xFF0C;&#x5982;&#x679C;&#x672A;&#x88AB;&#x6355;&#x83B7;&#x6216;&#x88AB;@throw&#x629B;&#x51FA;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6CE8;&#x518C;NSSetUncaughtExceptionHandler&#x51FD;&#x6570;&#x6765;&#x6355;&#x83B7;&#x5904;&#x7406;&#x3002;</p>
+<h2 id="&#x5F02;&#x5E38;&#x6D41;&#x7A0B;">&#x5F02;&#x5E38;&#x6D41;&#x7A0B;</h2>
+<ul>
+<li>&#x5F53;&#x9519;&#x8BEF;&#x53D1;&#x751F;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x5728;&#x6700;&#x5E95;&#x5C42;&#x4EA7;&#x751F;Mach&#x5F02;&#x5E38;</li>
+<li>Mach&#x5F02;&#x5E38;&#x5728;host&#x5C42;&#x88AB;&#x8F6C;&#x6362;&#x4E3A;&#x76F8;&#x5E94;&#x7684;Unix Signal</li>
+<li>&#x5728;OC&#x5C42;&#x5982;&#x679C;&#x6709;&#x5BF9;&#x5E94;&#x7684;NSException&#xFF08;OC&#x5F02;&#x5E38;&#xFF09;&#xFF0C;&#x5C31;&#x8F6C;&#x6362;&#x6210;OC&#x5F02;&#x5E38;</li>
+<li>OC&#x5F02;&#x5E38;&#x53EF;&#x4EE5;&#x5728;OC&#x5C42;&#x5F97;&#x5230;&#x5904;&#x7406;</li>
+<li>&#x5982;&#x679C;OC&#x5F02;&#x5E38;&#x4E00;&#x76F4;&#x5F97;&#x4E0D;&#x5230;&#x5904;&#x7406;&#xFF0C;&#x7A0B;&#x5E8F;&#x4F1A;&#x5F3A;&#x884C;&#x53D1;&#x9001;SIGABRT&#x4FE1;&#x53F7;&#x4E2D;&#x65AD;&#x7A0B;&#x5E8F;</li>
+<li>&#x5982;&#x679C;OC&#x5C42;&#x6CA1;&#x6709;&#x5BF9;&#x5E94;&#x7684;NSException&#xFF0C;&#x5C31;&#x53EA;&#x80FD;&#x8BA9;Unix&#x6807;&#x51C6;&#x7684;signal&#x673A;&#x5236;&#x6765;&#x5904;&#x7406;&#x4E86;&#x3002;</li>
+</ul>
+<h2 id="crash-&#x65E5;&#x5FD7;&#x7EC4;&#x6210;">Crash &#x65E5;&#x5FD7;&#x7EC4;&#x6210;</h2>
+<ul>
+<li>header<ul>
+<li>&#x624B;&#x673A;&#x578B;&#x53F7;</li>
+<li>&#x8FDB;&#x7A0B;&#x540D;&#x79F0;</li>
+<li>appID</li>
+<li>app &#x7248;&#x672C;</li>
+<li>&#x7CFB;&#x7EDF;&#x7248;&#x672C;</li>
+<li>&#x5D29;&#x6E83;&#x65F6;&#x95F4;</li>
+</ul>
+</li>
+<li>&#x5F02;&#x5E38;&#x4FE1;&#x606F;<ul>
+<li>Exception Type: EXC_BAD_ACCESS (SIGSEGV)</li>
+<li>Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000000</li>
+<li>Exception Codes: 0x0000000000000000</li>
+<li>Termination Signal: Segmentation fault: 11</li>
+<li>Termination Reason: Namespace SIGNAL</li>
+</ul>
+</li>
+<li>&#x7EBF;&#x7A0B;&#x56DE;&#x6EAF;<ul>
+<li>&#x5D29;&#x6E83;&#x5806;&#x6808;</li>
+</ul>
+</li>
+<li>&#x7EBF;&#x7A0B;&#x72B6;&#x6001;</li>
+<li>&#x4E8C;&#x8FDB;&#x5236;&#x6620;&#x50CF;</li>
 </ul>
 
                                 
@@ -477,12 +530,12 @@
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                <a href="launch_opt.html" class="navigation navigation-prev " aria-label="Previous page: 启动优化">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../iOSBase/c_memory_layout.md" class="navigation navigation-next " aria-label="Next page: Memory Layout">
+                <a href="performance_monitor.html" class="navigation navigation-next " aria-label="Next page: 性能监控">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -493,7 +546,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"通用基础","level":"1.2","depth":1,"next":{"title":"Memory Layout","level":"1.2.1","depth":2,"path":"iOSBase/c_memory_layout.md","ref":"iOSBase/c_memory_layout.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Base/base.md","mtime":"2018-12-04T14:01:42.822Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-04T14:10:45.642Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Crash 跟踪","level":"1.4.6","depth":2,"next":{"title":"性能监控","level":"1.4.7","depth":2,"path":"Optimize/performance_monitor.md","ref":"Optimize/performance_monitor.md","articles":[]},"previous":{"title":"启动优化","level":"1.4.5","depth":2,"path":"Optimize/launch_opt.md","ref":"Optimize/launch_opt.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Optimize/crash_trace.md","mtime":"2018-11-19T09:53:56.100Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-04T14:10:45.642Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
