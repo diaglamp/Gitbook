@@ -8,14 +8,18 @@
 
 ### Memory Graph
 
-memory graph -> navigation issue -> runtime
+memory graph -&gt; navigation issue -&gt; runtime
 
-- 内存状态
-- 循环引用
+* 内存状态
+* 循环引用
 
 ### Analyze
 
 ### Debug View Hierarchy
 
-
 ### Zombie
+
+abc
+
+
+
