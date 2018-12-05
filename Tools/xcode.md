@@ -19,7 +19,5 @@ memory graph -&gt; navigation issue -&gt; runtime
 
 ### Zombie
 
-abc
-
 
 
