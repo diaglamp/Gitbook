@@ -30,6 +30,7 @@ gitbook build
 优点：
 - gitbook 官方支持
 - 自带 `gitbook editor`，在线编辑器
+- 支持链接 github 仓库，同步更新文档
 
 缺点：
  - 服务器响应慢，操作太差
@@ -52,7 +53,8 @@ gitbook build
 - 支持 CI
 
 缺点：
-- 暂时不知道怎么显示gitbook
+- gitlab pages 暂时不会用
+- repo 都在 github，只有文档在 gitbook 不太好
 
 
 #### 所以目前方案

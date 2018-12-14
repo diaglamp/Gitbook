@@ -112,17 +112,20 @@ IDE将编译和链接的过程一步完成，这个过程称为构建build
 
 ### 编译器职能
 
-- Clang 编译器前端
-    - 语法分析
-    - 语义分析
-    - 生成中间代码
-- LLVM (Low Level virtual machine) 编译器后端
-    - 机器无关代码优化
-    - 生成机器语言
-    - 机器相关代码优化
-    - BitCode生成
-    - 链接期优化
-    - 针对不同架构生成不同机器码
+Clang 编译器前端
+
+- 语法分析
+- 语义分析
+- 生成中间代码
+  
+LLVM (Low Level virtual machine) 编译器后端
+
+- 机器无关代码优化
+- 生成机器语言
+- 机器相关代码优化
+- BitCode生成
+- 链接期优化
+- 针对不同架构生成不同机器码
 
 
 ### Symbol 符号表
@@ -176,5 +179,4 @@ IDE将编译和链接的过程一步完成，这个过程称为构建build
 - [编译器 - objc.io](https://www.objccn.io/issue-6-2/)
 - [如果将iOS打包速度提升十倍以上 - bestswifter](https://bestswifter.com/improve_compile_speed/)
 - [iOS编译过程的原理和应用](https://github.com/LeoMobileDeveloper/Blogs/blob/master/iOS/iOS%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8.md)
-
-[Building Faster in Xcode - WWDC2018](https://developer.apple.com/videos/play/wwdc2018/408/)
+- [Building Faster in Xcode - WWDC2018](https://developer.apple.com/videos/play/wwdc2018/408/)

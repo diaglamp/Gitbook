@@ -61,23 +61,96 @@ mmap 回写时机
 
 ## Logan 源码分析
 
-Logan 数据协议
+Logan MMAP 缓存数据协议
 
-- mmap metadata 
-    - header + lenth + tail - mmap 元数据长度
-    - version - mmap版本
-    - path - mmap 数据对应的文件名
-- log metadata
-    - 四个字节 - 日志数据长度
-- log
-    - 日志数据
+![mmap](mmap.png)
 
-clogan_init
+初始化流程
 
+```c
+int clogan_init() {
+    aes_init_key_iv()   // 加密初始化
+    makedir_clogan() // 创建文件
+    open_mmap_file_clogan()   // mmap buffer, memory cache
+    read_mmap_data_clogan() // 解析 MMAP metadata (回写上次的mmap)
+        write_mmap_data_clogan() // 解析 mmap 日志数据
+            init_file_clogan(logan_model) // mmap 日志数据 flush
+            clogan_flush()
+}
 ```
-aes_init_key_iv
-makedir_clogan
-open_mmap_file_clogan   150K
-read_mmap_data_clogan // 解析 MMAP 数据流 mmap version、mmap path
-write_mmap_data_clogan //解析 日志数据 -> 内存模型
+
+打开日志文件，准备写入
+```c
+int clogan_open() {
+    clogan_flush() // 回写日志
+    init_file_clogan() // 初始化文件
+    init_zlib_clogan() // 初始化 zlib
+    add_mmap_header_clogan() // 写入 mmap metadata
+}
+```
+
+写入日志
+```c
+int clogan_write() {
+    is_file_exist_clogan(file_path) // 校验日志文件
+    is_file_exist_clogan(_mmap_file_path) // 校验 mmap 文件
+    construct_json_data_clogan() // 拼装 log json
+    clogan_write_section() // 写入日志 (>20K 切割写入)
+        clogan_write2()
+            clogan_zlib_compress() // 日志压缩加密
+            update_length_clogan() // 更新 mmap len
+            clogan_zlib_end_compress() // 压缩单元结束
+            update_length_clogan() //
+            if(emptyfile || memory || len > mmap) // 写入 log 文件时机
+                write_flush_clogan()
+}
+```
+
+日志写入 log 文件
+```c
+void write_flush_clogan() {
+    write_dest_clogan() //文件写入磁盘、更新文件大小
+        is_file_exist_clogan() // 校验日志文件
+        insert_header_file_clogan() //空文件插入一行clogan
+        fwrite() // 写入 
+        fflush() // flush
+    clear_clogan()
+}
+```
+
+logan_model
+```c
+
+static cLogan_model *logan_model = NULL; //(不释放)
+
+typedef struct logan_model_struct {
+    int total_len; //数据长度
+    char *file_path; //文件路径
+
+    // zlib
+    int is_malloc_zlib;
+    z_stream *strm;
+    int zlib_type; //压缩状态
+    int is_ready_gzip; //是否可以gzip
+    
+    // 流式压缩
+    char remain_data[16]; //剩余空间
+    int remain_data_len; //剩余空间长度
+
+    // 日志文件
+    int file_stream_type; //文件流类型
+    FILE *file; //文件流
+    long file_len; //文件大小
+
+    // 指针
+    unsigned char *buffer_point; //mmap缓存的指针
+    unsigned char *last_point; //最后写入位置的指针
+    unsigned char *total_point; //日志长度的指针
+    unsigned char *content_lent_point;//协议内容长度指针 , 给java看,高字节
+    int content_len; //内容的大小
+
+    unsigned char aes_iv[16]; //aes_iv
+    int is_ok;
+
+} cLogan_model;
 ```
